@@ -29,6 +29,6 @@ app.get('/search', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`HW restaurantList on http://localhost:${port}`)
+  console.log(`RestaurantList is running on http://localhost:${port}`)
 })
 
