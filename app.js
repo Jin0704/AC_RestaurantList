@@ -8,8 +8,6 @@ const RestaurantData = require('./models/restaurant')
 const restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
 
-
-
 mongoose.connect('mongodb://localhost/restaurantList', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
@@ -54,7 +52,6 @@ app.get('/restaurants/:id', (req, res) => {
 //   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
 //   if (req.params.restaurant_id <= restaurantList.results.length) {
 //     res.render('show', { restaurant: restaurant })
-
 //   }
 // })
 

@@ -25,7 +25,6 @@
             value="{{keyword}}" aria-describedby="search-button">
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search">Search</i></button>
-
           </div>
         </div>
       </form>
@@ -34,7 +33,7 @@
 </div>
 
 <!-- restaurant list -->
-<div class="container mt-5">
+<div class="container mt-5" style="display: flexbox;">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
@@ -57,11 +56,13 @@
             </div>
           </div>
         </a>
-        <a href="./restaurants/{{ this._id }}">Detail</a>
-        <a href="./restaurants/{{ this._id }}/edit">Edit</a>
-        <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
-          <button type="submit">Delete</button>
-        </form>
+        <div class="container" style="display: flexbox; ">
+          <a href="./restaurants/{{ this._id }}">介紹</a>
+          <a href="./restaurants/{{ this._id }}/edit">編輯</a>
+          <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+            <button type="submit">刪除</button>
+          </form>
+        </div>
         {{/each}}
       </div>
     </div>
