@@ -75,6 +75,31 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return RestaurantData.findById(id)
+    .lean()
+    .then((restaurants) => res.render('edit', { restaurants }))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const name = req.body.name
+  const location = req.body.location
+  const phone = req.body.phone
+  return RestaurantData.findById(id)
+    .then(restaurants => {
+      restaurants.name = name
+      restaurants.location = location
+      restaurants.phone = phone
+      return restaurants.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
+
+
 app.listen(port, () => {
   console.log(`RestaurantList is running on http://localhost:${port}`)
 })
