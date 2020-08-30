@@ -70,7 +70,7 @@ app.post('/restaurants', (req, res) => {
   const category = req.body.category
   const rating = req.body.rating
   const description = req.body.description
-  const image = `https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg`
+  const image = req.body.image
   return RestaurantData.create({ name, location, phone, category, rating, description, image })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -92,7 +92,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
   const category = req.body.category
   const rating = req.body.rating
   const description = req.body.description
-  const image = `https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg`
+  const image = req.body.image
   return RestaurantData.findById(id)
     .then(restaurants => {
       restaurants.name = name
