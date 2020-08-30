@@ -42,15 +42,21 @@ app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
 
-
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  if (req.params.restaurant_id <= restaurantList.results.length) {
-    res.render('show', { restaurant: restaurant })
-    // } else {
-    //   res.render('error')
-  }
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return RestaurantData.findById(id)
+    .lean()
+    .then((restaurants) => res.render('detail', { restaurants }))
+    .catch(error => console.log(error))
 })
+
+// app.get('/restaurants/:restaurant_id', (req, res) => {
+//   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
+//   if (req.params.restaurant_id <= restaurantList.results.length) {
+//     res.render('show', { restaurant: restaurant })
+
+//   }
+// })
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
@@ -61,7 +67,6 @@ app.get('/search', (req, res) => {
 })
 
 app.post('/restaurants', (req, res) => {
-  console.log(req.body)
   const name = req.body.name
   const location = req.body.location
   const phone = req.body.phone
