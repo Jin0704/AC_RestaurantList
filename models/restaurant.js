@@ -38,3 +38,5 @@ const restaurantSchema = new Schema({
 })
 
 module.exports = mongoose.model('RestaurantData', restaurantSchema)
+
+
