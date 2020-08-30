@@ -6,6 +6,9 @@ const restaurantList = require('./public/restaurant.json')
 const mongoose = require('mongoose')
 const RestaurantData = require('./models/restaurant')
 const restaurant = require('./models/restaurant')
+const bodyParser = require('body-parser')
+
+
 
 mongoose.connect('mongodb://localhost/restaurantList', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -23,7 +26,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
-
+app.use(bodyParser.urlencoded({ extended: true }))
 // app.get('/', (req, res) => {
 //   res.render('index', { restaurants: restaurantList.results, })
 // })
@@ -33,17 +36,19 @@ app.get('/', (req, res) => {
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
-
 })
 
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
 
 
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
   if (req.params.restaurant_id <= restaurantList.results.length) {
     res.render('show', { restaurant: restaurant })
-  } else {
-    res.render('error')
+    // } else {
+    //   res.render('error')
   }
 })
 
@@ -53,6 +58,16 @@ app.get('/search', (req, res) => {
     return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
   })
   res.render('index', { restaurants: restaurants, keyword: keyword })
+})
+
+app.post('/restaurants', (req, res) => {
+  console.log(req.body)
+  const name = req.body.name
+  const location = req.body.location
+  const phone = req.body.phone
+  return RestaurantData.create({ name, location, phone })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 app.listen(port, () => {
