@@ -54,6 +54,9 @@
         style="max-width: 600px;">
       <div class="container">
         <a href="{{ restaurants._id }}/edit">Edit</a>
+        <form action="{{ restaurants._id }}/delete" method="POST" style="display: inline;">
+          <button type="submit">Delete</button>
+        </form>
         <a href="/">back</a>
       </div>
     </div>
