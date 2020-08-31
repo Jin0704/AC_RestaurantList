@@ -47,7 +47,6 @@ app.get('/restaurants/:id', (req, res) => {
     .then((restaurants) => res.render('detail', { restaurants }))
     .catch(error => console.log(error))
 })
-
 // app.get('/restaurants/:restaurant_id', (req, res) => {
 //   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
 //   if (req.params.restaurant_id <= restaurantList.results.length) {

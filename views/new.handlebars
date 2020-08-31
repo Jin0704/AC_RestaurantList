@@ -5,23 +5,48 @@
   <button type="submit">Create</button>
 </form> --}}
 
-<div class="container mt-5" style="display: flexbox;">
-  <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
+<div class="container mt-5" style="display: flexbox; width: 1300px;">
+  <div class="row" style="width: 1300px;">
+    <div class="col-md-10 col-12 mx-auto" style="width: 1300px;">
       <div class="card-columns">
         <div class="card mb-3">
           <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg"
             alt="預設圖片">
-          <div class="card-body p-3">
+          <div class="card-body">
             <form action="/restaurants" method="POST">
-              <input type="text" placeholder="餐廳名稱" name="name">
-              <input type="text" placeholder="餐廳類別" name="category">
-              <input type="text" placeholder="餐廳地點" name="location">
-              <input type="text" placeholder="餐廳電話" name="phone">
-              <input type="text" placeholder="評分(1~5分)" name="rating" value="3">
-              <input type="text" placeholder="簡單評論" name="description" value="這是間好餐廳">
-              <input type="text" placeholder="圖片網址" name="image"
-                value="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg">
+              <div>
+                <label for="title" class="left">名稱：</label>
+                <input type="text" placeholder="餐廳名稱" name="name">
+              </div>
+              <div>
+                <label for="title" class="left">類別：</label>
+                <input type="text" placeholder="餐廳類別" name="category">
+              </div>
+              <div>
+                <label for="title" class="left">地點：</label>
+                <input type="text" placeholder="餐廳地點" name="location">
+              </div>
+              <div>
+                <label for="title" class="left">電話：</label>
+                <input type="text" placeholder="餐廳電話" name="phone">
+              </div>
+              <div>
+                <label for="title" class="left">評分：</label>
+                <input type="text" placeholder="評分(1~5分)" name="rating">
+              </div>
+              <div>
+                <label for="title" class="left">評論：</label>
+                <textarea name="description" rows="6" cols="40">簡單評論</textarea>
+                {{!-- <input type="text" placeholder="簡單評論" name="description"> --}}
+              </div>
+              <div>
+                <label for="title" class="left">圖片連結：</label>
+                <!--用textarea取代input-->
+                <textarea name="image" rows="3"
+                  cols="40">https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg</textarea>
+                {{!-- <input type="text" placeholder="圖片網址" name="image"
+                  value="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg"> --}}
+              </div>
               <button type="submit">Create</button>
             </form>
           </div>

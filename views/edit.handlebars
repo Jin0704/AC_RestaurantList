@@ -11,21 +11,43 @@
 
 
 <div class="container mt-5" style="width:auto">
-  <div class="row">
+  <div class="row" style="width: 1300px;">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
         <div class="card mb-3">
           <img class="card-img-top" src="{{ restaurants.image }}" alt="預設圖片">
           <div class="card-body p-3">
             <form action="/restaurants/{{ restaurants._id }}/edit" method="POST">
-              <input type="text" placeholder="餐廳店名" name="name" value="{{ restaurants.name }}">
-              <input type="text" placeholder="餐廳地點" name="location" value="{{ restaurants.location }}">
-              <input type="text" placeholder="餐廳電話" name="phone" value="{{ restaurants.phone }}">
-              <input type="text" placeholder="餐廳類別" name="category" value="{{restaurants.category}}">
-              <input type="text" placeholder="評分(1~5分)" name="rating" value="{{restaurants.rating}}">
-              <input type="text" placeholder="簡單評論" name="description" value="{{restaurants.description}}">
-              <input type="text" placeholder="圖片網址" name="image" value="{{restaurants.image}}">
-              style="width: fit-content;">
+              <div>
+                <label for="title" class="left">名稱：</label>
+                <input type="text" placeholder="餐廳名稱" name="name" value="{{ restaurants.name }}">
+              </div>
+              <div>
+                <label for="title" class="left">地點：</label>
+                <input type="text" placeholder="餐廳地點" name="location" value="{{ restaurants.location }}">
+              </div>
+              <div>
+                <label for="title" class="left">電話：</label>
+                <input type="text" placeholder="餐廳電話" name="phone" value="{{ restaurants.phone }}">
+              </div>
+              <div>
+                <label for="title" class="left">類別：</label>
+                <input type="text" placeholder="餐廳類別" name="category" value="{{restaurants.category}}">
+              </div>
+              <div>
+                <label for="title" class="left">評分：</label>
+                <input type="text" placeholder="評分(1~5分)" name="rating" value="{{restaurants.rating}}">
+              </div>
+              <div>
+                <label for="title" class="left">評論：</label>
+                <textarea name="description" rows="3" cols="40">{{restaurants.description}}</textarea>
+                {{!-- <input type="text" placeholder="簡單評論" name="description" value="{{restaurants.description}}"> --}}
+              </div>
+              <div>
+                <label for="title" class="left">圖片網址：</label>
+                <textarea name="image" rows="3" cols="40">{{restaurants.image}}</textarea>
+                {{!-- <input type="text" placeholder="圖片網址" name="image" value="{{restaurants.image}}"> --}}
+              </div>
               <button type="submit">儲存</button>
               <a href="/">返回</a>
             </form>
