@@ -56,21 +56,23 @@ app.get('/restaurants/:id', (req, res) => {
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
+  console.log(keyword)
   const restaurants = restaurantList.results.filter(restaurant => {
     return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
   })
+
   res.render('index', { restaurants: restaurants, keyword: keyword })
 })
 
 app.post('/restaurants', (req, res) => {
-  const name = req.body.name
-  const location = req.body.location
-  const phone = req.body.phone
-  const category = req.body.category
-  const rating = req.body.rating
-  const description = req.body.description
-  const image = req.body.image
-  return RestaurantData.create({ name, location, phone, category, rating, description, image })
+  // const name = req.body.name
+  // const location = req.body.location
+  // const phone = req.body.phone
+  // const category = req.body.category
+  // const rating = req.body.rating
+  // const description = req.body.description
+  // const image = req.body.image
+  return RestaurantData.create({ ...req.body })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -85,22 +87,15 @@ app.get('/restaurants/:id/edit', (req, res) => {
 
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
-  const name = req.body.name
-  const location = req.body.location
-  const phone = req.body.phone
-  const category = req.body.category
-  const rating = req.body.rating
-  const description = req.body.description
-  const image = req.body.image
   return RestaurantData.findById(id)
     .then(restaurants => {
-      restaurants.name = name
-      restaurants.location = location
-      restaurants.phone = phone
-      restaurants.category = category
-      restaurants.rating = rating
-      restaurants.description = description
-      restaurants.image = image
+      restaurants.name = req.body.name
+      restaurants.location = req.body.location
+      restaurants.phone = req.body.phone
+      restaurants.category = req.body.category
+      restaurants.rating = req.body.rating
+      restaurants.description = req.body.description
+      restaurants.image = req.body.image
       return restaurants.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))
