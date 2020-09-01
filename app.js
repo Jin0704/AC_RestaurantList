@@ -15,7 +15,7 @@ db.on('error', () => {
   console.log('Something wrong')
 })
 db.once('open', () => {
-  console.log('Is connecting')
+  console.log('Is connecting Mongodb')
 })
 
 
@@ -56,11 +56,9 @@ app.get('/restaurants/:id', (req, res) => {
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  console.log(keyword)
   const restaurants = restaurantList.results.filter(restaurant => {
     return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
   })
-
   res.render('index', { restaurants: restaurants, keyword: keyword })
 })
 

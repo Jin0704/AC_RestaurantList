@@ -17,18 +17,25 @@ git clone https://github.com/Jin0704/AC_RestaurantList.git
 ```
 2. 運用終端機進入擺放專案的資料夾
 ```
-git clone https://github.com/Jin0704/AC_RestaurantList.git
+cd AC_RestaurantList
 ```
 3. 安裝npm套件
 ```
 輸入 npm init -y
 ```
-4. 啟動伺服器，執行 app.js 檔案
+4. 載入起始資料
 ```
-輸入 node app.js 指令
+輸入 npm run seed
+出現 mongodb connected 表示連線成功
+出現 done 表示資料載入完成
 ```
-5. 當終端機出現以下訊息，表示專案運行成功
+5. 啟動伺服器
+```
+輸入 npn run dev指令
+```
+6. 當終端機出現以下訊息，表示專案運行成功
 ```
 RestaurantList is running on http://localhost:3000
+Is connecting
 ```
-6. 現在，您可上http://localhost:3000 使用本專案
+7. 現在，您可上http://localhost:3000 使用本專案
