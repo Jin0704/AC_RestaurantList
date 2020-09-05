@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
-const restaurantList = require('./public/restaurant.json')
 const mongoose = require('mongoose')
 const RestaurantData = require('./models/restaurant')
 const restaurant = require('./models/restaurant')
@@ -112,4 +111,3 @@ app.post('/restaurants/:id/delete', (req, res) => {
 app.listen(port, () => {
   console.log(`RestaurantList is running on http://localhost:${port}`)
 })
-
