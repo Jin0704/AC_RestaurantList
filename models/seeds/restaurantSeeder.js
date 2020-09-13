@@ -1,14 +1,8 @@
-const mongoose = require('mongoose')
 const RestaurantData = require('../restaurant')
-mongoose.connect('mongodb://localhost/restaurantList', { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
+const db = require('../../config/mongoose')
 
-db.on('error', () => {
-  console.log('Something wrong')
-})
 
 db.once('open', () => {
-  console.log('mongodb connected')
   RestaurantData.create({
     "id": 1,
     "name": "Sababa 沙巴巴中東美食",
