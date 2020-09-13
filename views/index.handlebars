@@ -19,17 +19,36 @@
     <div class="search-bar-inner">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
+
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
             value="{{keyword}}" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search">Search</i></button>
+          <div class=" input-group-append">
+            <button class="btn btn-success" type="submit" id="search-button" max-width='fit-content'><i
+                class="fas fa-search">Search</i></button>
+          </div>
+        </div>
+        <div class="dropdown mt-3 ml-3;" style="display:flex;
+    justify-content: flex-end;">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" name="sort" style="font-size: small;">
+            排序
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/sort/name/asc">店名：正序</a>
+            <a class=" dropdown-item" href="/sort/name/desc">店名: 降序</a>
+            <a class="dropdown-item" href="/sort/category/asc">類別</a>
+            <a class="dropdown-item" href="/sort/location/asc">地區</a>
+            <a class="dropdown-item" href="/sort/rating/desc">評分(由高到低)</a>
+            <a class="dropdown-item" href="/sort/rating/asc">評分(由低到高)</a>
           </div>
         </div>
       </form>
     </div>
+
   </div>
 </div>
+
 
 <!-- restaurant list -->
 <div class="container mt-5" style="display: flexbox;">
