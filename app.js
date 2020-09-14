@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
-const port = 3000
+const PORT = process.env.PORT || 3000
 const exphbs = require('express-handlebars')
 require('./config/mongoose')
 
@@ -20,6 +20,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(routes) //首頁路由
 
 
-app.listen(port, () => {
-  console.log(`RestaurantList is running on http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`RestaurantList is running on http://localhost:${PORT}`)
 })
