@@ -7,7 +7,10 @@ const exphbs = require('express-handlebars')
 require('./config/mongoose')
 
 const routes = require('./routes')
+
+const userPassport = require('./config/passport')
 require('./config/mongoose')
+
 const restaurant = require('./models/restaurant')
 
 const app = express()
@@ -24,6 +27,7 @@ app.use(session({
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
+userPassport(app)
 app.use(routes) //首頁路由
 
 
