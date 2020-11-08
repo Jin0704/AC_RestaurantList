@@ -5,9 +5,14 @@ const home = require('./modules/home')
 const restaurants = require('./modules/restaurants')
 const sort = require("./modules/sort")
 const users = require('./user')
+const { authenticator } = require('../middleware/auth')
 
-router.use('/', home)
-router.use('/restaurants', restaurants)
+router.use('/restaurants', authenticator, restaurants) // 加入驗證程序
+router.use('/users', users)
+// 加入驗證程序
+router.use('/', authenticator, home)
+// router.use('/', home)
+// router.use('/restaurants', restaurants)
 router.use('/search', restaurants)
 router.use("/sort", sort)
 router.use('/sort/name/restaurants', restaurants)
