@@ -8,7 +8,7 @@ require('./config/mongoose')
 
 const routes = require('./routes')
 
-const userPassport = require('./config/passport')
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const restaurant = require('./models/restaurant')
@@ -27,7 +27,14 @@ app.use(session({
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
-userPassport(app)
+usePassport(app)
+
+app.use((req, res, next) => {
+  console.log(req.user)
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
 app.use(routes) //首頁路由
 
 

@@ -1,7 +1,6 @@
-const { use } = require('passport')
 const passport = require('passport')
-const User = require('../models/users')
 const LocalStrategy = require('passport-local').Strategy
+const User = require('../models/users')
 module.exports = app => {
   // 初始化 Passport 模組
   app.use(passport.initialize())
@@ -10,7 +9,7 @@ module.exports = app => {
   passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
     User.findOne({ email })
       .then(user => {
-        if (user) {
+        if (!user) {
           return done(null, false, { message: 'That email is not registered!' })
         }
         if (user.password !== password) {
