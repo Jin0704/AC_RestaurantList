@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const router = express.Router()
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 3000
@@ -13,6 +14,12 @@ const app = express()
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 
 app.set('view engine', 'handlebars')
+
+app.use(session({
+  secret: 'ThisisMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
