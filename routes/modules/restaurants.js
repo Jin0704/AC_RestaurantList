@@ -7,8 +7,9 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  const id = req.params.id
-  return RestaurantData.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return RestaurantData.findOne({ _id, userId })
     .lean()
     .then((restaurants) => res.render('detail', { restaurants }))
     .catch(error => console.log(error))
@@ -28,14 +29,17 @@ router.get('/', (req, res) => {
 
 
 router.post('', (req, res) => {
-  return RestaurantData.create({ ...req.body })
+  const userId = req.user._id
+  const { name, location, phone, category, rating, description, image } = req.body
+  return RestaurantData.create({ name, location, phone, category, rating, description, image, userId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return RestaurantData.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return RestaurantData.findOne({ _id, userId })
     .lean()
     .then((restaurants) => res.render('edit', { restaurants }))
     .catch(error => console.log(error))
@@ -43,25 +47,28 @@ router.get('/:id/edit', (req, res) => {
 })
 
 router.post('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return RestaurantData.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  const { name, location, phone, category, rating, description, image } = req.body
+  return RestaurantData.findOne({ _id, userId })
     .then(restaurants => {
-      restaurants.name = req.body.name
-      restaurants.location = req.body.location
-      restaurants.phone = req.body.phone
-      restaurants.category = req.body.category
-      restaurants.rating = req.body.rating
-      restaurants.description = req.body.description
-      restaurants.image = req.body.image
+      restaurants.name = name
+      restaurants.location = location
+      restaurants.phone = phone
+      restaurants.category = category
+      restaurants.rating = rating
+      restaurants.description = description
+      restaurants.image = image
       return restaurants.save()
     })
-    .then(() => res.redirect(`/restaurants/${id}`))
+    .then(() => res.redirect(`/restaurants/${_id}`))
     .catch(error => console.log(error))
 })
 
 router.post('/:id/delete', (req, res) => {
-  const id = req.params.id
-  return RestaurantData.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return RestaurantData.findOne({ _id, userId })
     .then(restaurants => restaurants.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
