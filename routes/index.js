@@ -5,10 +5,12 @@ const home = require('./modules/home')
 const restaurants = require('./modules/restaurants')
 const sort = require("./modules/sort")
 const users = require('./user')
+const auth = require('./modules/auth')
 const { authenticator } = require('../middleware/auth')
 
 router.use('/restaurants', authenticator, restaurants) // 加入驗證程序
 router.use('/users', users)
+router.use('/auth', auth)
 // 加入驗證程序
 router.use('/', authenticator, home)
 // router.use('/', home)

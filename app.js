@@ -3,7 +3,11 @@ const session = require('express-session')
 const router = express.Router()
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
-const PORT = process.env.PORT || 3000
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+const PORT = process.env.PORT
 const exphbs = require('express-handlebars')
 require('./config/mongoose')
 
@@ -20,7 +24,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(session({
-  secret: 'ThisisMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
